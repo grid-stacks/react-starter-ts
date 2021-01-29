@@ -1,14 +1,7 @@
-import React, {
-	FC,
-	useState,
-	useEffect,
-	FormEvent,
-	SyntheticEvent,
-	ChangeEvent,
-} from "react";
+import React, { FC, useState, SyntheticEvent } from "react";
 
 import { useSelector, useDispatch } from "react-redux";
-import { selectCount, countActions } from "../../store/slices/count.slice";
+import { selectCount, countActions } from "./count.slice";
 
 const Count: FC = () => {
 	const count = useSelector(selectCount);
@@ -36,10 +29,22 @@ const Count: FC = () => {
 		setAmount(num);
 	};
 
+	const [todoText, setTodoText] = useState<string>("");
+
+	const handleTodoInputChange = (text: string) => {
+		setTodoText(text);
+	};
+
+	const handleTodoSubmit = (e: SyntheticEvent) => {
+		e.preventDefault();
+		dispatch(countActions.addTodos(todoText));
+		setTodoText("");
+	};
+
 	return (
 		<div>
 			<h1>Count Slice</h1>
-			<form action="">
+			<form>
 				<input
 					type="text"
 					name="number"
@@ -56,6 +61,18 @@ const Count: FC = () => {
 			</form>
 			<br />
 			<h3>Count value: {count}</h3>
+			<br />
+			<br />
+			<h2>Todo add</h2>
+			<input
+				type="text"
+				name="todo"
+				id="todo"
+				placeholder="Todo text"
+				value={todoText}
+				onChange={(e) => handleTodoInputChange(e.target.value)}
+			/>
+			<button onClick={handleTodoSubmit}>Add</button>
 		</div>
 	);
 };

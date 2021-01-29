@@ -7,7 +7,7 @@ import {
 	userActions,
 	IUserState,
 	initialUserState,
-} from "../../store/slices/user.slice";
+} from "./user.slice";
 
 const User: FC = () => {
 	const userObject = useSelector(getUserState);
@@ -24,9 +24,10 @@ const User: FC = () => {
 	};
 
 	const handleSubmit = () => {
-		console.log(user);
-		if (user.username && user.email && user.age)
+		if (user.username && user.email && user.age) {
 			dispatch(userActions.updateUser(user));
+			setUser(initialUserState);
+		}
 	};
 
 	return (
@@ -37,6 +38,7 @@ const User: FC = () => {
 				name="username"
 				id="username"
 				placeholder="Username"
+				value={user.username}
 				required
 				onChange={(e) => onUserChange("username", e.target.value)}
 			/>
@@ -45,6 +47,7 @@ const User: FC = () => {
 				name="email"
 				id="email"
 				placeholder="Email"
+				value={user.email}
 				required
 				onChange={(e) => onUserChange("email", e.target.value)}
 			/>
@@ -53,6 +56,7 @@ const User: FC = () => {
 				name="age"
 				id="age"
 				placeholder="Age"
+				value={user.age}
 				required
 				onChange={(e) => onUserChange("age", parseInt(e.target.value))}
 			/>
