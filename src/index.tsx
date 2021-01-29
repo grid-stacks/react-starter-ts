@@ -6,9 +6,14 @@ import App from "./App/App";
 // Optional measuring performance
 // import reportWebVitals from "./reportWebVitals";
 
+import store from "./store/store";
+import { Provider } from "react-redux";
+
 ReactDOM.render(
 	<StrictMode>
-		<App />
+		<Provider store={store}>
+			<App />
+		</Provider>
 	</StrictMode>,
 	document.getElementById("root")
 );
