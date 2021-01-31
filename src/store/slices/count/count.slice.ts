@@ -1,4 +1,5 @@
 import { createSlice, PayloadAction, nanoid } from "@reduxjs/toolkit";
+import { RootState } from "../../store";
 import { userActions } from "../user/user.slice";
 
 export const COUNT_SLICE_KEY = "count";
@@ -82,13 +83,10 @@ export const countReducer = countSlice.reducer;
 export const countActions = countSlice.actions;
 
 // Selecting full state
-export const getCountState = (state: {
-	[COUNT_SLICE_KEY]: ICountState;
-}): ICountState => {
+export const getCountState = (state: RootState): ICountState => {
 	return state[COUNT_SLICE_KEY];
 };
 
 // Selecting count
-export const selectCount = (state: {
-	[COUNT_SLICE_KEY]: ICountState;
-}): number => state[COUNT_SLICE_KEY].count;
+export const selectCount = (state: RootState): number =>
+	state[COUNT_SLICE_KEY].count;

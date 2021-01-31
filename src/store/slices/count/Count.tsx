@@ -1,12 +1,12 @@
 import React, { FC, useState, SyntheticEvent } from "react";
 
-import { useSelector, useDispatch } from "react-redux";
+import { useTypedSelector, useAppDispatch } from "../../store";
 import { selectCount, countActions } from "./count.slice";
 
 const Count: FC = () => {
-	const count = useSelector(selectCount);
+	const count = useTypedSelector(selectCount);
 
-	const dispatch = useDispatch();
+	const dispatch = useAppDispatch();
 
 	const handleIncrement = (e: SyntheticEvent) => {
 		e.preventDefault();

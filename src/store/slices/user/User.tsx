@@ -1,6 +1,6 @@
 import React, { FC, useState } from "react";
 
-import { useSelector, useDispatch } from "react-redux";
+import { useTypedSelector, useAppDispatch } from "../../store";
 
 import {
 	getUserState,
@@ -10,9 +10,9 @@ import {
 } from "./user.slice";
 
 const User: FC = () => {
-	const userObject = useSelector(getUserState);
+	const userObject = useTypedSelector(getUserState);
 
-	const dispatch = useDispatch();
+	const dispatch = useAppDispatch();
 
 	const [user, setUser] = useState(initialUserState);
 

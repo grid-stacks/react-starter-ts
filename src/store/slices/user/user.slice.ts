@@ -1,4 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { RootState } from "../../store";
 
 export const USER_SLICE_KEY = "user";
 
@@ -79,31 +80,24 @@ export const userReducer = userSlice.reducer;
 export const userActions = userSlice.actions;
 
 // Selecting full state
-export const getUserState = (state: {
-	[USER_SLICE_KEY]: UserState;
-}): UserState => {
+export const getUserState = (state: RootState): UserState => {
 	return state[USER_SLICE_KEY];
 };
 
 // Selecting only email
-export const selectUserEmail = (state: {
-	[USER_SLICE_KEY]: UserState;
-}): string => state[USER_SLICE_KEY].email;
+export const selectUserEmail = (state: RootState): string =>
+	state[USER_SLICE_KEY].email;
 
 // Selecting only loading
-export const selectUserLoading = (state: {
-	[USER_SLICE_KEY]: UserState;
-}): string => state[USER_SLICE_KEY].loadingStatus;
+export const selectUserLoading = (state: RootState): string =>
+	state[USER_SLICE_KEY].loadingStatus;
 
 // Selecting only error
-export const selectUserError = (state: {
-	[USER_SLICE_KEY]: UserState;
-}): string | null => state[USER_SLICE_KEY].error;
+export const selectUserError = (state: RootState): string | null =>
+	state[USER_SLICE_KEY].error;
 
 // Selecting loading and error both
-export const selectUserLoadingError = (state: {
-	[USER_SLICE_KEY]: UserState;
-}): ILoadingState => {
+export const selectUserLoadingError = (state: RootState): ILoadingState => {
 	return {
 		loadingStatus: state[USER_SLICE_KEY].loadingStatus,
 		error: state[USER_SLICE_KEY].error,

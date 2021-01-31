@@ -1,6 +1,7 @@
 import React, { FC } from "react";
 
 import Count from "./slices/count/Count";
+import Post from "./slices/post/Post";
 import User from "./slices/user/User";
 
 const ExampleComponent: FC = () => {
@@ -10,6 +11,8 @@ const ExampleComponent: FC = () => {
 			<User />
 			<hr />
 			<Count />
+			<hr />
+			<Post />
 		</div>
 	);
 };
