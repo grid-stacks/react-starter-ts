@@ -29,6 +29,7 @@ const reduxSagaMonitorOptions = {};
 const sagaMiddleware = createSagaMiddleware(reduxSagaMonitorOptions);
 const { run: runSaga } = sagaMiddleware;
 
+// Prepare rootReducer for injecting into enhancer
 function createReducer(): Reducer<any, AnyAction> {
 	return rootReducer;
 }

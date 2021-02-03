@@ -4,11 +4,17 @@ import { useInjectSaga } from "redux-injectors";
 
 import { useTypedSelector, useAppDispatch } from "../../../store";
 import { selectCount, countActions } from "./count.slice";
-import { watchIncrementAsync } from "./count.sagas";
+import {
+	watchIncrementAsync,
+	watchDecrementAsync,
+	countComponentSaga,
+} from "./count.sagas";
 
 const Count: FC = () => {
-	// Activating count saga
-	useInjectSaga({ key: "count", saga: watchIncrementAsync });
+	// Activating count sagas
+	useInjectSaga({ key: "countIncrement", saga: watchIncrementAsync }); // Calling single saga
+	useInjectSaga({ key: "countDecrement", saga: watchDecrementAsync }); // Calling single saga
+	useInjectSaga({ key: "countAll", saga: countComponentSaga }); // Calling multiple sagas
 
 	const count = useTypedSelector(selectCount);
 
@@ -30,13 +36,11 @@ const Count: FC = () => {
 	};
 
 	const [amount, setAmount] = useState(0);
-
 	const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
 		setAmount(+e.target.value);
 	};
 
 	const [todoText, setTodoText] = useState<string>("");
-
 	const handleTodoInputChange = (e: ChangeEvent<HTMLInputElement>) => {
 		setTodoText(e.target.value);
 	};
