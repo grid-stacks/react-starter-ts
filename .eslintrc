@@ -32,5 +32,9 @@
 				"endOfLine": "auto"
 			}
 		]
+	},
+	"env": {
+		"browser": true,
+		"jest": true
 	}
 }

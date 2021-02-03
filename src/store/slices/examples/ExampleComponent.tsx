@@ -1,8 +1,8 @@
 import React, { FC } from "react";
 
-import Count from "./slices/count/Count";
-import Post from "./slices/post/Post";
-import User from "./slices/user/User";
+import Count from "./count/Count";
+import Post from "./post/Post";
+import User from "./user/User";
 
 const ExampleComponent: FC = () => {
 	return (

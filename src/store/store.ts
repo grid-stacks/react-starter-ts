@@ -1,10 +1,15 @@
-import { configureStore, getDefaultMiddleware, Action } from "@reduxjs/toolkit";
+import {
+	configureStore,
+	getDefaultMiddleware,
+	Action,
+	Store,
+} from "@reduxjs/toolkit";
 import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
 import { createLogger } from "redux-logger";
 import { ThunkAction } from "redux-thunk";
 
 import rootReducer from "./rootReducers";
-import { jsonPlaceholder } from "./slices/post/post.slice";
+import { jsonPlaceholder } from "./slices/examples/post/post.slice";
 
 const logger = createLogger({
 	collapsed: true,
@@ -17,7 +22,7 @@ const middleware = [
 	jsonPlaceholder.middleware,
 ];
 
-const store = configureStore({
+const store: Store = configureStore({
 	reducer: rootReducer,
 	middleware,
 	devTools: process.env.NODE_ENV === "development",

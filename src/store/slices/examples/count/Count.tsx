@@ -1,6 +1,6 @@
-import React, { FC, useState, SyntheticEvent } from "react";
+import React, { FC, useState, SyntheticEvent, ChangeEvent } from "react";
 
-import { useTypedSelector, useAppDispatch } from "../../store";
+import { useTypedSelector, useAppDispatch } from "../../../store";
 import { selectCount, countActions } from "./count.slice";
 
 const Count: FC = () => {
@@ -25,14 +25,14 @@ const Count: FC = () => {
 
 	const [amount, setAmount] = useState(0);
 
-	const handleInputChange = (num: number) => {
-		setAmount(num);
+	const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
+		setAmount(+e.target.value);
 	};
 
 	const [todoText, setTodoText] = useState<string>("");
 
-	const handleTodoInputChange = (text: string) => {
-		setTodoText(text);
+	const handleTodoInputChange = (e: ChangeEvent<HTMLInputElement>) => {
+		setTodoText(e.target.value);
 	};
 
 	const handleTodoSubmit = (e: SyntheticEvent) => {
@@ -49,9 +49,7 @@ const Count: FC = () => {
 					type="text"
 					name="number"
 					id="number"
-					onChange={(e) =>
-						handleInputChange(parseInt(e.target.value))
-					}
+					onChange={handleInputChange}
 				/>
 				<button onClick={handleIncrement}>Increase</button>
 				<button onClick={handleDecrement}>Decrement</button>
@@ -70,7 +68,7 @@ const Count: FC = () => {
 				id="todo"
 				placeholder="Todo text"
 				value={todoText}
-				onChange={(e) => handleTodoInputChange(e.target.value)}
+				onChange={handleTodoInputChange}
 			/>
 			<button onClick={handleTodoSubmit}>Add</button>
 		</div>
