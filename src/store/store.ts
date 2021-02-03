@@ -4,8 +4,8 @@ import {
 	getDefaultMiddleware,
 	Action,
 	Store,
-	Reducer,
-	AnyAction,
+	applyMiddleware,
+	EnhancedStore,
 } from "@reduxjs/toolkit";
 
 import { createLogger } from "redux-logger";
@@ -14,55 +14,58 @@ import createSagaMiddleware from "redux-saga";
 import { createInjectorsEnhancer, forceReducerReload } from "redux-injectors";
 import { routerMiddleware } from "connected-react-router";
 
-import rootReducer from "./rootReducers";
+import createReducer from "./rootReducers";
 import { jsonPlaceholder } from "./slices/examples/post/post.slice";
 import history from "./history";
 
-// Logger configuration
-const logger = createLogger({
-	collapsed: true,
-	duration: true,
-});
-
-// Saga setup
-const reduxSagaMonitorOptions = {};
-const sagaMiddleware = createSagaMiddleware(reduxSagaMonitorOptions);
-const { run: runSaga } = sagaMiddleware;
-
-// Prepare rootReducer for injecting into enhancer
-function createReducer(): Reducer<any, AnyAction> {
-	return rootReducer;
-}
-
-const enhancers = [
-	createInjectorsEnhancer({
-		createReducer,
-		runSaga,
-	}),
-];
-
-const middleware = [
-	...getDefaultMiddleware(),
-	logger,
-	jsonPlaceholder.middleware,
-	routerMiddleware(history), // History middleware injection
-	sagaMiddleware, // Saga middleware injection
-];
-
-const store: Store = configureStore({
-	reducer: createReducer(),
-	middleware,
-	devTools: process.env.NODE_ENV !== "production",
-	enhancers,
-});
-
-if (module.hot) {
-	module.hot.accept("./rootReducers", () => {
-		forceReducerReload(store);
+export function configureAppStore(initialState = {}): EnhancedStore {
+	// Logger configuration
+	const logger = createLogger({
+		collapsed: true,
+		duration: true,
 	});
+
+	// Saga setup
+	const reduxSagaMonitorOptions = {};
+	const sagaMiddleware = createSagaMiddleware(reduxSagaMonitorOptions);
+	const { run: runSaga } = sagaMiddleware;
+
+	const middleware = [
+		...getDefaultMiddleware(),
+		logger,
+		jsonPlaceholder.middleware,
+		routerMiddleware(history), // History middleware injection
+		sagaMiddleware, // Saga middleware injection
+	];
+
+	const enhancers = [
+		applyMiddleware(...middleware),
+		createInjectorsEnhancer({
+			createReducer,
+			runSaga,
+		}),
+	];
+
+	const store: Store = configureStore({
+		reducer: createReducer(),
+		preloadedState: initialState,
+		devTools: process.env.NODE_ENV !== "production",
+		enhancers,
+	});
+
+	if (module.hot) {
+		module.hot.accept("./rootReducers", () => {
+			forceReducerReload(store);
+		});
+	}
+
+	return store;
 }
 
-export type RootState = ReturnType<typeof rootReducer>;
+const store = configureAppStore();
+export const rootReducers = createReducer();
+
+export type RootState = ReturnType<typeof rootReducers>;
 export type AppDispatch = typeof store.dispatch;
 export type AppThunk = ThunkAction<void, RootState, unknown, Action<string>>;
 export const useAppDispatch = (): AppDispatch => useDispatch<AppDispatch>();
