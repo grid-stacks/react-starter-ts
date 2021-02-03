@@ -17,12 +17,5 @@ const rootReducer = combineReducers({
 	[USER_SLICE_KEY]: userReducer,
 	[jsonPlaceholder.reducerPath]: jsonPlaceholder.reducer,
 });
-// const rootReducer = (history: History<any>) =>
-// 	combineReducers({
-// 		router: connectRouter(history),
-// 		[COUNT_SLICE_KEY]: countReducer,
-// 		[USER_SLICE_KEY]: userReducer,
-// 		[jsonPlaceholder.reducerPath]: jsonPlaceholder.reducer,
-// 	});
 
 export default rootReducer;

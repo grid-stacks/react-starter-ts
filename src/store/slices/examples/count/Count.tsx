@@ -1,9 +1,15 @@
 import React, { FC, useState, SyntheticEvent, ChangeEvent } from "react";
 
+import { useInjectSaga } from "redux-injectors";
+
 import { useTypedSelector, useAppDispatch } from "../../../store";
 import { selectCount, countActions } from "./count.slice";
+import { watchIncrementAsync } from "./count.sagas";
 
 const Count: FC = () => {
+	// Activating count saga
+	useInjectSaga({ key: "count", saga: watchIncrementAsync });
+
 	const count = useTypedSelector(selectCount);
 
 	const dispatch = useAppDispatch();
