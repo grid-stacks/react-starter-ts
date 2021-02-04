@@ -6,29 +6,31 @@ import Count from "./count/Count";
 import Post from "./post/Post";
 import User from "./user/User";
 
+import ROUTER from "../../../consts/routers";
+
 const ExampleComponent: FC = () => {
 	return (
 		<div>
 			<ul>
 				<li>
-					<Link to="/user">User</Link>
+					<Link to={ROUTER.USER}>User</Link>
 				</li>
 				<li>
-					<Link to="/count">Count</Link>
+					<Link to={ROUTER.COUNT}>Count</Link>
 				</li>
 				<li>
-					<Link to="/post">Post</Link>
+					<Link to={ROUTER.POST}>Post</Link>
 				</li>
 			</ul>
 			<hr />
 			<Switch>
-				<Route path="/user">
+				<Route path={ROUTER.USER}>
 					<User />
 				</Route>
-				<Route path="/count">
+				<Route path={ROUTER.COUNT}>
 					<Count />
 				</Route>
-				<Route path="/post">
+				<Route path={ROUTER.POST}>
 					<Post />
 				</Route>
 			</Switch>
