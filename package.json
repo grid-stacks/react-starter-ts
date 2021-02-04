@@ -1,11 +1,12 @@
 {
 	"name": "react-starter-ts",
-	"version": "0.3.2",
+	"version": "0.4.0",
 	"author": "DHN Chandan",
 	"private": true,
 	"scripts": {
 		"start": "react-dotenv && react-scripts start",
 		"build": "react-dotenv && react-scripts build",
+		"analyze": "yarn build && source-map-explorer 'build/static/js/*.js'",
 		"test": "react-scripts test",
 		"eject": "react-scripts eject",
 		"lint:fix": "eslint src/*.ts --fix",
