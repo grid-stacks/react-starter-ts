@@ -54,6 +54,21 @@ const ExampleComponent: FC = () => {
 				<Route path={ROUTER.LOGIN}>
 					<div>
 						<h1>Login</h1>
+						<br />
+						<p>
+							Not yet registered?{" "}
+							<Link to={ROUTER.REGISTER}>Register</Link>
+						</p>
+					</div>
+				</Route>
+				<Route path={ROUTER.REGISTER}>
+					<div>
+						<h1>Register</h1>
+						<br />
+						<p>
+							Already a member?{" "}
+							<Link to={ROUTER.LOGIN}>Register</Link>
+						</p>
 					</div>
 				</Route>
 			</Switch>
