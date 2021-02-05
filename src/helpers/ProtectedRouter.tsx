@@ -4,9 +4,10 @@ import { Route, Redirect } from "react-router-dom";
 import ROUTER from "../consts/routers";
 
 export interface Props {
-	user: Record<string, unknown> | null;
-	loginPath?: string;
 	children: ReactElement;
+	user: Record<string, unknown> | null;
+	path: string;
+	loginPath?: string;
 	[name: string]: unknown; // Accepts any number of object property; key will be string and value will be any
 }
 
@@ -15,9 +16,9 @@ export interface Props {
  * Helper component for redirecting unauthorized user
  */
 const ProtectedRouter: FC<Props> = ({
+	children,
 	user,
 	loginPath = ROUTER.LOGIN,
-	children,
 	...rest
 }: Props) => {
 	const res = () => {

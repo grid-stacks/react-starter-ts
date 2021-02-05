@@ -6,6 +6,7 @@ import ROUTER from "../consts/routers";
 export interface Props {
 	children: ReactElement;
 	user: Record<string, unknown> | null;
+	path: string;
 	dashboardPath?: string;
 	[name: string]: unknown; // Accepts any number of object property; key will be string and value will be any
 }
@@ -39,12 +40,12 @@ export default AuthorizedRouter;
 
 // Use
 
-// <ProtectedRouter user={user} path={ROUTER.COUNT} exact loginPath='/login'>
-//	 <Count />
-// </ProtectedRouter>;
-// <ProtectedRouter user={user} path={ROUTER.COUNT} exact>
-//	 <Count />
-// </ProtectedRouter>;
-// <ProtectedRouter user={user} path={ROUTER.COUNT}>
-//	 <Count />
-// </ProtectedRouter>;
+// <AuthorizedRouter user={user} path="/login" exact dashboardPath='/'>
+//	 <Login />
+// </AuthorizedRouter>;
+// <AuthorizedRouter user={user} path="/login" exact>
+//	 <Login />
+// </AuthorizedRouter>;
+// <AuthorizedRouter user={user} path="/login">
+//	 <Login />
+// </AuthorizedRouter>;

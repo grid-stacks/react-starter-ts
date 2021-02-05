@@ -1,9 +1,10 @@
 import React, { FC } from "react";
 
-import { Route, Switch, Link } from "react-router-dom";
+import { Switch, Link } from "react-router-dom";
 
 import Loadable from "../../../helpers/Loadable";
 import ProtectedRouter from "../../../helpers/ProtectedRouter";
+import AuthorizedRouter from "../../../helpers/AuthorizedRouter";
 
 import ROUTER from "../../../consts/routers";
 
@@ -51,7 +52,12 @@ const ExampleComponent: FC = () => {
 				<ProtectedRouter user={user} path={ROUTER.POST}>
 					<Post />
 				</ProtectedRouter>
-				<Route path={ROUTER.LOGIN}>
+				<AuthorizedRouter
+					user={user}
+					path={ROUTER.LOGIN}
+					dashboardPath={ROUTER.DASHBOARD}
+					exact
+				>
 					<div>
 						<h1>Login</h1>
 						<br />
@@ -60,17 +66,21 @@ const ExampleComponent: FC = () => {
 							<Link to={ROUTER.REGISTER}>Register</Link>
 						</p>
 					</div>
-				</Route>
-				<Route path={ROUTER.REGISTER}>
+				</AuthorizedRouter>
+				<AuthorizedRouter
+					user={user}
+					path={ROUTER.REGISTER}
+					dashboardPath={ROUTER.DASHBOARD}
+				>
 					<div>
 						<h1>Register</h1>
 						<br />
 						<p>
 							Already a member?{" "}
-							<Link to={ROUTER.LOGIN}>Register</Link>
+							<Link to={ROUTER.LOGIN}>Login</Link>
 						</p>
 					</div>
-				</Route>
+				</AuthorizedRouter>
 			</Switch>
 		</div>
 	);
