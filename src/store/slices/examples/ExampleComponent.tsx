@@ -2,11 +2,17 @@ import React, { FC } from "react";
 
 import { Route, Switch, Link } from "react-router-dom";
 
-import Count from "./count/Count";
-import Post from "./post/Post";
-import User from "./user/User";
+import Loadable from "../../../helpers/Loadable";
 
 import ROUTER from "../../../consts/routers";
+
+const FB = {
+	fallback: <div>Loading...</div>,
+};
+
+const User = Loadable(() => import("./user/User"), FB);
+const Count = Loadable(() => import("./count/Count"), FB);
+const Post = Loadable(() => import("./post/Post"), FB);
 
 const ExampleComponent: FC = () => {
 	return (
