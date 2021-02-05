@@ -4,9 +4,10 @@ import { Route, Redirect } from "react-router-dom";
 import ROUTER from "../consts/routers";
 
 export interface Props {
-	user: Record<string, unknown>;
+	user: Record<string, unknown> | null;
 	loginPath?: string;
 	children: ReactElement;
+	[name: string]: unknown; // Accepts any number of object property; key will be string and value will be any
 }
 
 /**
@@ -19,31 +20,30 @@ const ProtectedRouter: FC<Props> = ({
 	children,
 	...rest
 }: Props) => {
-	return (
-		<Route
-			{...rest}
-			render={() => {
-				// If user, children will be rendered
-				if (user) return children;
-				// If no user, then redirect to login path
-				if (!user) {
-					return <Redirect to={{ pathname: loginPath }} />;
-				}
-				// Default return
-				return null;
-			}}
-		></Route>
-	);
+	const res = () => {
+		// If user, children will be rendered
+		if (user) return children;
+		// If no user, then redirect to login path
+		if (!user) {
+			return <Redirect to={{ pathname: loginPath }} />;
+		}
+		// Default return
+		return null;
+	};
+
+	return <Route {...rest} render={res}></Route>;
 };
 
 export default ProtectedRouter;
 
 // Use
 
-// <Route path="/browse">
-// 	 <Browse />
-// </Route>
-
-// <ProtectedRouter user={user} children={<Count />} loginPath='/login' path='/count' exact />
-// <ProtectedRouter user={user} children={<Count />} path='/count' exact />
-// <ProtectedRouter user={user} children={<Count />} path='/count' />
+// <ProtectedRouter user={user} path={ROUTER.COUNT} exact loginPath='/login'>
+//	 <Count />
+// </ProtectedRouter>;
+// <ProtectedRouter user={user} path={ROUTER.COUNT} exact>
+//	 <Count />
+// </ProtectedRouter>;
+// <ProtectedRouter user={user} path={ROUTER.COUNT}>
+//	 <Count />
+// </ProtectedRouter>;
