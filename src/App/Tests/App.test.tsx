@@ -3,7 +3,7 @@ import React from "react";
 import { shallow, ShallowWrapper } from "enzyme";
 
 import App from "../App";
-import ExampleComponent from "../../store/slices/examples/ExampleComponent";
+import ExampleComponent from "../Components/Examples/ExampleComponent";
 
 describe("App", () => {
 	let wrapper: ShallowWrapper;

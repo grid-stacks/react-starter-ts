@@ -15,8 +15,8 @@ import { createInjectorsEnhancer, forceReducerReload } from "redux-injectors";
 import { routerMiddleware } from "connected-react-router";
 
 import createReducer from "./rootReducers";
-import { jsonPlaceholder } from "./slices/examples/post/post.slice";
-import history from "./history";
+import { jsonPlaceholder } from "../App/Components/Examples/post/post.slice";
+import history from "../helpers/history";
 
 export function configureAppStore(initialState = {}): EnhancedStore {
 	// Logger configuration

@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction, nanoid } from "@reduxjs/toolkit";
-import { RootState } from "../../../store";
+import { RootState } from "../../../../store/store";
 import { userActions } from "../user/user.slice";
 
 export const COUNT_SLICE_KEY = "count";

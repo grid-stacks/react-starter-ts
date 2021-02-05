@@ -8,7 +8,7 @@ import { Provider } from "react-redux";
 import store from "./store/store";
 
 import { ConnectedRouter } from "connected-react-router";
-import history from "./store/history";
+import history from "./helpers/history";
 
 import App from "./App/App";
 import { BrowserRouter } from "react-router-dom";

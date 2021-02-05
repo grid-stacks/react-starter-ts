@@ -2,7 +2,7 @@ import React, { FC, useState, SyntheticEvent, ChangeEvent } from "react";
 
 import { useInjectSaga } from "redux-injectors";
 
-import { useTypedSelector, useAppDispatch } from "../../../store";
+import { useTypedSelector, useAppDispatch } from "../../../../store/store";
 import { selectCount, countActions } from "./count.slice";
 import {
 	watchIncrementAsync,

@@ -1,11 +1,11 @@
 import React from "react";
 import { Provider } from "react-redux";
 
-import { ShallowWrapper, shallow, mount } from "enzyme";
+import { ShallowWrapper, shallow } from "enzyme";
 
 import Count from "./Count";
-import { initialCountState, ICountState, countReducer } from "./count.slice";
-import store from "../../../store";
+// import { initialCountState, ICountState, countReducer } from "./count.slice";
+import store from "../../../../store/store";
 
 describe("<Count />", () => {
 	let wrapper: ShallowWrapper;

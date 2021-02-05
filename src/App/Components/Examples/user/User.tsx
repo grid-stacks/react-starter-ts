@@ -1,6 +1,6 @@
 import React, { FC, useState } from "react";
 
-import { useTypedSelector, useAppDispatch } from "../../../store";
+import { useTypedSelector, useAppDispatch } from "../../../../store/store";
 
 import {
 	getUserState,

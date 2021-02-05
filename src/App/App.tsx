@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import ExampleComponent from "../store/slices/examples/ExampleComponent";
+import ExampleComponent from "./Components/Examples/ExampleComponent";
 
 const App: FC = () => {
 	return (
