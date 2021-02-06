@@ -1,6 +1,8 @@
 import { combineReducers, Reducer } from "@reduxjs/toolkit";
 
 import { connectRouter } from "connected-react-router";
+import { firebaseReducer } from "react-redux-firebase";
+import { firestoreReducer } from "redux-firestore";
 
 import {
 	countReducer,
@@ -17,6 +19,8 @@ import history from "../helpers/history";
 // Prepare rootReducer for injecting into enhancer
 export default function createReducer(injectedReducers = {}): Reducer {
 	const rootReducer = combineReducers({
+		firebase: firebaseReducer,
+		firestore: firestoreReducer,
 		router: connectRouter(history),
 		[COUNT_SLICE_KEY]: countReducer,
 		[USER_SLICE_KEY]: userReducer,

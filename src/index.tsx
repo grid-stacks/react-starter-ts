@@ -10,17 +10,19 @@ import store from "./store/store";
 import { ConnectedRouter } from "connected-react-router";
 import history from "./helpers/history";
 
+import { ReactReduxFirebaseProvider } from "react-redux-firebase";
+import { rrfProps } from "./store/_providers/firebase";
+
 import App from "./App/App";
-import { BrowserRouter } from "react-router-dom";
 
 ReactDOM.render(
 	<StrictMode>
 		<Provider store={store}>
-			<BrowserRouter>
+			<ReactReduxFirebaseProvider {...rrfProps}>
 				<ConnectedRouter history={history}>
 					<App />
 				</ConnectedRouter>
-			</BrowserRouter>
+			</ReactReduxFirebaseProvider>
 		</Provider>
 	</StrictMode>,
 	document.getElementById("root")

@@ -13,6 +13,11 @@ import { ThunkAction } from "redux-thunk";
 import createSagaMiddleware from "redux-saga";
 import { createInjectorsEnhancer, forceReducerReload } from "redux-injectors";
 import { routerMiddleware } from "connected-react-router";
+import {
+	getFirebase,
+	actionTypes as rrfActionTypes,
+} from "react-redux-firebase";
+import { constants as rfConstants } from "redux-firestore";
 
 import createReducer from "./rootReducers";
 import { jsonPlaceholder } from "../App/Components/Examples/post/post.slice";
@@ -30,8 +35,26 @@ export function configureAppStore(initialState = {}): EnhancedStore {
 	const sagaMiddleware = createSagaMiddleware(reduxSagaMonitorOptions);
 	const { run: runSaga } = sagaMiddleware;
 
+	const extraArgument = { getFirebase };
+
 	const middleware = [
-		...getDefaultMiddleware(),
+		...getDefaultMiddleware({
+			serializableCheck: {
+				ignoredActions: [
+					// just ignore every redux-firebase and react-redux-firebase action type
+					...Object.keys(rfConstants.actionTypes).map(
+						(type) => `${rfConstants.actionsPrefix}/${type}`
+					),
+					...Object.keys(rrfActionTypes).map(
+						(type) => `@@reactReduxFirebase/${type}`
+					),
+				],
+				ignoredPaths: ["firebase", "firestore"],
+			},
+			thunk: {
+				extraArgument,
+			},
+		}),
 		logger,
 		jsonPlaceholder.middleware,
 		routerMiddleware(history), // History middleware injection
