@@ -14,6 +14,7 @@ import { ReactReduxFirebaseProvider } from "react-redux-firebase";
 import { rrfProps } from "./store/_providers/firebase";
 
 import App from "./App/App";
+import "./styles/index.css";
 
 ReactDOM.render(
 	<StrictMode>
