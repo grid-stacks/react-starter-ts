@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 
-import { Switch, Link, useHistory } from "react-router-dom";
+import { Switch, Link } from "react-router-dom";
 
 import Loadable from "../../../helpers/Loadable";
 import ProtectedRouter from "../../../helpers/ProtectedRouter";
@@ -20,9 +20,6 @@ const Post = Loadable(() => import("./post/Post"), FB);
 const user = { name: "DHN Chandan" };
 
 const ExampleComponent: FC = () => {
-	const linkHistory = useHistory();
-	console.log(linkHistory);
-
 	return (
 		<div>
 			<ul>

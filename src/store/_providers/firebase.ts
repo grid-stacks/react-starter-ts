@@ -29,8 +29,9 @@ export default firebase;
 
 // react-redux-firebase config
 const rrfConfig = {
-	userProfile: "users",
+	userProfile: "users", // Location on Firebase where user profiles are stored
 	useFirestoreForProfile: true, // Firestore for Profile instead of Realtime DB
+	useFirestoreForStorageMeta: true, // Write storage file metadata to Firestore instead of Real Time DB
 	enableClaims: true, // Get custom claims along with the profile
 };
 

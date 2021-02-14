@@ -1,4 +1,11 @@
-import React, { ComponentType, FC, lazy, ReactElement, Suspense } from "react";
+import React, {
+	ComponentType,
+	FC,
+	lazy,
+	LazyExoticComponent,
+	ReactElement,
+	Suspense,
+} from "react";
 
 export type IFunc = () => Promise<{ default: ComponentType<unknown> }>;
 export interface IFallback {
@@ -16,7 +23,9 @@ const Loadable = (
 	fb: IFallback = { fallback: null }
 ): FC => {
 	// Lazy loading of the component
-	const LazyComponent = lazy(importFunc);
+	const LazyComponent: LazyExoticComponent<ComponentType<unknown>> = lazy(
+		importFunc
+	);
 
 	const ReturnComponent = (props: Record<string, unknown>) => (
 		// React suspense loading

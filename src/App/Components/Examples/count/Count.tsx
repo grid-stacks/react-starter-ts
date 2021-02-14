@@ -1,16 +1,33 @@
-import React, { FC, useState, SyntheticEvent, ChangeEvent } from "react";
+import React, {
+	useState,
+	SyntheticEvent,
+	ChangeEvent,
+	ComponentType,
+	FC,
+} from "react";
 
 import { useInjectSaga } from "redux-injectors";
+import { useFirestoreConnect, WithFirebaseProps } from "react-redux-firebase";
+
+import { useDispatch } from "react-redux";
 
 import { useTypedSelector, useAppDispatch } from "../../../../store/store";
-import { selectCount, countActions } from "./count.slice";
+import { selectCount, countActions, fetchTodos } from "./count.slice";
 import {
 	watchIncrementAsync,
 	watchDecrementAsync,
 	countComponentSaga,
 } from "./count.sagas";
 
+export type FBComponent = ComponentType<
+	Pick<WithFirebaseProps<unknown>, never> & WithFirebaseProps<unknown>
+>;
+
 const Count: FC = () => {
+	useFirestoreConnect([
+		{ collection: "todos" }, // or 'todos'
+	]);
+
 	// Activating count sagas
 	useInjectSaga({ key: "countIncrement", saga: watchIncrementAsync }); // Calling single saga
 	useInjectSaga({ key: "countDecrement", saga: watchDecrementAsync }); // Calling single saga
@@ -19,10 +36,12 @@ const Count: FC = () => {
 	const count = useTypedSelector(selectCount);
 
 	const dispatch = useAppDispatch();
+	const dispatch_ = useDispatch();
 
 	const handleIncrement = (e: SyntheticEvent) => {
 		e.preventDefault();
 		dispatch(countActions.increment());
+		dispatch_(fetchTodos(5));
 	};
 
 	const handleIncrementByNumber = (e: SyntheticEvent) => {
