@@ -1,11 +1,11 @@
 import React, { FC, useEffect } from "react";
 
-import { getUsersFromApi, getPostsFromApi } from "./providers";
+import { parallelArrayExample, parallelObjectExample } from "./providers";
 
 const Async: FC = () => {
 	useEffect(() => {
-		getUsersFromApi();
-		getPostsFromApi();
+		parallelArrayExample();
+		parallelObjectExample();
 	}, []);
 
 	return (
