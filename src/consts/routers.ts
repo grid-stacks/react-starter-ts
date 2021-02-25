@@ -3,6 +3,7 @@ const ROUTER = {
 	USER: "/user",
 	COUNT: "/count",
 	POST: "/post",
+	ASYNC: "/async",
 	LOGIN: "/login",
 	REGISTER: "/register",
 	DASHBOARD: "/",

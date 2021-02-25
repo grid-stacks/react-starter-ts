@@ -15,6 +15,7 @@ const FB = {
 const User = Loadable(() => import("./user/User"), FB);
 const Count = Loadable(() => import("./count/Count"), FB);
 const Post = Loadable(() => import("./post/Post"), FB);
+const Async = Loadable(() => import("./async/Async"), FB);
 
 // const user = null;
 const user = { name: "DHN Chandan" };
@@ -23,6 +24,9 @@ const ExampleComponent: FC = () => {
 	return (
 		<div>
 			<ul>
+				<li>
+					<Link to={ROUTER.ASYNC}>Async</Link>
+				</li>
 				<li>
 					<Link to={ROUTER.USER}>User</Link>
 				</li>
@@ -38,6 +42,9 @@ const ExampleComponent: FC = () => {
 			</ul>
 			<hr />
 			<Switch>
+				<ProtectedRouter user={user} path={ROUTER.ASYNC} exact>
+					<Async />
+				</ProtectedRouter>
 				<ProtectedRouter
 					user={user}
 					loginPath={ROUTER.LOGIN}
