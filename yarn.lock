@@ -3272,6 +3272,41 @@
     "@svgr/plugin-svgo" "^5.5.0"
     loader-utils "^2.0.0"
 
+"@syncfusion/ej2-base@~18.4.41", "@syncfusion/ej2-base@~18.4.44":
+  version "18.4.44"
+  resolved "https://registry.yarnpkg.com/@syncfusion/ej2-base/-/ej2-base-18.4.44.tgz#6b6b0718f5a0470f3fc595d516d74d67a96c5e62"
+  integrity sha512-irv+We6ZxLAr8SctOB4hLP9otTq2yVT8yPfhB8ytQ2ZXWqDfddcLKfTC7NwFnMmD0mh+vAogHwpWuYbDl9yZew==
+  dependencies:
+    "@syncfusion/ej2-icons" "~18.4.39"
+
+"@syncfusion/ej2-buttons@18.4.44":
+  version "18.4.44"
+  resolved "https://registry.yarnpkg.com/@syncfusion/ej2-buttons/-/ej2-buttons-18.4.44.tgz#d9bf695606d426c537de7b416df4356e954c5ef0"
+  integrity sha512-G1khodX1j/e+uT5f1ENZJqORaO9UwU0q/DLKLfhKF6w0j0xvArAEaNwkiMCu/MGynRXBz5iYvgnaSlBDwJt0+A==
+  dependencies:
+    "@syncfusion/ej2-base" "~18.4.44"
+
+"@syncfusion/ej2-icons@~18.4.39":
+  version "18.4.39"
+  resolved "https://registry.yarnpkg.com/@syncfusion/ej2-icons/-/ej2-icons-18.4.39.tgz#6e180b6fd85207c767f78ee86584c444d4236775"
+  integrity sha512-l/FT5H12SSV2IwWbL39nrh5NwB8BpRdHoVOpG9/H4Ezs3q7zVAPgEMq+fAn5Tp1PBhl3cWYpSct7M2tJMSG49w==
+
+"@syncfusion/ej2-react-base@~18.4.41":
+  version "18.4.41"
+  resolved "https://registry.yarnpkg.com/@syncfusion/ej2-react-base/-/ej2-react-base-18.4.41.tgz#48347053919646c2f10a7891021467b30607320e"
+  integrity sha512-kblAGtPVs8BwsC9TXsnOP3arasiHACMN2al3Afa/U0Zgjr3TLHshj8AVlB7O8HZ/MtTUEiATIIka5L/GduMkTA==
+  dependencies:
+    "@syncfusion/ej2-base" "~18.4.41"
+
+"@syncfusion/ej2-react-buttons@^18.4.44":
+  version "18.4.44"
+  resolved "https://registry.yarnpkg.com/@syncfusion/ej2-react-buttons/-/ej2-react-buttons-18.4.44.tgz#5f3e0e64528b2f84c4741531d52afee68aae0e07"
+  integrity sha512-62ctzHeLQesxmxGv44TnvxqAdrJubC3gpZq9RBV66InQByrKu/3aX/Y0WtT2lJJK/qJ/UBX1fHrXss4w4Swggw==
+  dependencies:
+    "@syncfusion/ej2-base" "~18.4.44"
+    "@syncfusion/ej2-buttons" "18.4.44"
+    "@syncfusion/ej2-react-base" "~18.4.41"
+
 "@testing-library/dom@^7.28.1":
   version "7.29.4"
   resolved "https://registry.yarnpkg.com/@testing-library/dom/-/dom-7.29.4.tgz#1647c2b478789621ead7a50614ad81ab5ae5b86c"
