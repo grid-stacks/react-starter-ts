@@ -4,6 +4,10 @@ import {
 	GanttComponent,
 	ColumnsDirective,
 	ColumnDirective,
+	Inject,
+	Edit,
+	Selection,
+	EditSettingsModel,
 } from "@syncfusion/ej2-react-gantt";
 
 const GanttData = [
@@ -77,6 +81,11 @@ const Gantt: FC = () => {
 		child: "subtasks",
 	});
 
+	const [editSettings] = useState<EditSettingsModel>({
+		allowEditing: true,
+		mode: "Auto",
+	});
+
 	return (
 		<div>
 			<h1>SyncFusion Gantt</h1>
@@ -103,6 +112,17 @@ const Gantt: FC = () => {
 						headerText="Job Duration"
 					/>
 				</ColumnsDirective>
+			</GanttComponent>
+			<hr />
+			<h3>Enable Cell Editing</h3>
+			<GanttComponent
+				dataSource={GanttData}
+				height="450px"
+				taskFields={taskFields}
+				allowSelection={true}
+				editSettings={editSettings}
+			>
+				<Inject services={[Edit, Selection]} />
 			</GanttComponent>
 		</div>
 	);
